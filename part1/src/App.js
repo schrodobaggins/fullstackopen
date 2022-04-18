@@ -1,23 +1,23 @@
-const Hello = (props) => {
+const Hello = ({name, age}) => {
 
-  return(
+  const bornYear = () => new Date().getFullYear() - age
+
+  return (
     <div>
-      <p>Hello {props.name}, you are {props.age} years old</p>
+      <p>
+        Hello {name}, you are {age} years old
+      </p>
+      <p>
+        So you were probably born in {bornYear()}
+      </p>
     </div>
   )
 }
 
-const App = () => {
-
-  const now = new Date();
-  const name = 'Connie'
-  const age = '21'
+const App = (props) => {
+  const {counter} = props
   return (
-  <div>
-    <h1>Hello world it is now {now.toString()}</h1>
-    <Hello name="Michael" age={age}/>
-    <Hello name={name} age="21"/>
-  </div>
+    <div>{counter}</div>
   )
 }
 
