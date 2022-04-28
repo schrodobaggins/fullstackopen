@@ -26,6 +26,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [vote, setVote] = useState(Array(anecdotes.length).fill(0))
+  // constructs new array and fills it with 0's for every anecdote in anecdotes array
 
   const randomizeAnecdote = () => {
     setSelected(Math.floor(Math.random() * 7))
@@ -33,7 +34,7 @@ const App = () => {
 
   // TODO: make sure to understand voting process before moving on
   const anecdoteVote = () => {
-    const copy = [...vote]
+    const copy = [...vote]  // spread operator
     copy[selected] += 1
     setVote(copy)
   }
