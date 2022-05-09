@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
+
 let notes = [  {
         id: 1,    
         content: "HTML is easy",    
@@ -21,12 +23,11 @@ let notes = [  {
     }
 ];
 
-// first route
+// START OF ROUTES
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
 })
 
-// second route
 app.get('/api/notes', (request, response) => {
     response.json(notes)
 })
@@ -42,12 +43,19 @@ app.get('/api/notes/:id', (request, response) => {
     }
 })
 
+app.post('/api/notes', (request, response) => {
+    const note = request.body;
+    console.log(note);
+    response.json(note);
+})
+
 app.delete('/api/notes/:id', (request, response) => {
     const id = Number(request.params.id);
     notes = notes.filter(note => note.id !== id);
 
     response.status(204).end();
 })
+// END OF ROUTES
 
 const PORT = 3005
 app.listen(PORT, () => {
